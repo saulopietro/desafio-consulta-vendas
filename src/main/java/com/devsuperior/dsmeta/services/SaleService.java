@@ -66,25 +66,19 @@ public class SaleService {
 
 	@Transactional(readOnly = true)
 	public List<SaleSummaryDTO> findSummary(String iDate, String fDate) {
-
-		// Converte as Strings para LocalDate
 		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 		LocalDate startDate = null;
 		LocalDate endDate = null;
 
 		if (fDate == null) {
-			// Se fDate for null, usa a data de hoje
 			endDate = today;
 		} else {
-			// Caso contrário, converte a String para LocalDate
 			endDate = LocalDate.parse(fDate);
 		}
 
 		if (iDate == null) {
-			// Se iDate for null, usa a data de 1 ano atrás
 			startDate = endDate.minusYears(1L);
 		} else {
-			// Caso contrário, converte a String para LocalDate
 			startDate = LocalDate.parse(iDate);
 		}
 
